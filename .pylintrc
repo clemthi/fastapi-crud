@@ -1,0 +1,14 @@
+[MASTER]
+ignore=alembic
+extension-pkg-whitelist=pydantic
+
+[FORMAT]
+max-line-length=160
+
+[MESSAGES CONTROL]
+disable=
+    broad-except,bare-except,
+    missing-module-docstring,missing-function-docstring,missing-class-docstring
+
+[BASIC]
+good-names=i,j,k,v,ex,db,id

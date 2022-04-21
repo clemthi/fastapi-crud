@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "cba08a53-98d2-4b58-a666-698a5403a91a",
+		"name": "cityscore-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authent",
+			"item": [
+				{
+					"name": "get-token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName, () => {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody('error');\r",
+									"});\r",
+									"pm.environment.set(\"access_token\", pm.response.json().access_token);\r",
+									"pm.environment.set(\"refresh_token\", pm.response.json().refresh_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "default"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "default"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{authen_url}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+							"host": [
+								"{{authen_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"{{realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName, () => {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody('error');\r",
+									"});\r",
+									"pm.environment.set(\"access_token\", pm.response.json().access_token);\r",
+									"pm.environment.set(\"refresh_token\", pm.response.json().refresh_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "default"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "default"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{authen_url}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+							"host": [
+								"{{authen_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"{{realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "city-score",
+			"item": [
+				{
+					"name": "get-city-scores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/{{city_id}}/scores",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								"{{city_id}}",
+								"scores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-city-scores-year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/{{city_id}}/scores/{{year}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								"{{city_id}}",
+								"scores",
+								"{{year}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "city",
+			"item": [
+				{
+					"name": "get-city",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "insee_code",
+									"value": "75",
+									"disabled": true
+								},
+								{
+									"key": "city_name",
+									"value": "paris",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-city-details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/{{city_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								"{{city_id}}"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "insee_code",
+									"value": "75",
+									"disabled": true
+								},
+								{
+									"key": "city_name",
+									"value": "paris",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-cities-insee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/insee/66136",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								"insee",
+								"66136"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-city",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Brest\",\r\n  \"insee_code\": \"29002\",\r\n  \"zip_code\": \"29000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-city",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Brest\",\r\n  \"insee_code\": \"29000\",\r\n  \"latitude\": 3,\r\n  \"longitude\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/{{city_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								"{{city_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-city",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/cities/{{city_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cities",
+								"{{city_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "score",
+			"item": [
+				{
+					"name": "add-scores",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"year\": 2021,\r\n  \"city_id\": 278,\r\n  \"air_quality\": 0,\r\n  \"electricity\": 0,\r\n  \"environmental\": 0,\r\n  \"epd\": 0,\r\n  \"gas\": 0,\r\n  \"land\": 0,\r\n  \"population\": 0,\r\n  \"water_pollution\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/api/v1/scores/",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"scores",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-scores",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/scores/10",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"scores",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-scores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/api/v1/scores/?skip=0&limit=100",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"scores",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health-check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/api/v1/utils/health-check/",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"utils",
+						"health-check",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "city_id",
+			"value": "278",
+			"type": "default"
+		},
+		{
+			"key": "year",
+			"value": "2023",
+			"type": "default"
+		}
+	]
+}

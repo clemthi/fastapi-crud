@@ -1,0 +1,12 @@
+[
+    {
+        "name" : "air_quality_score",
+        "label" : "Qualité de l'air",
+        "description" : "Indicateur sur la qualité de l'air. Ce score est calculé à partir du taux de NO2, de SO2, de O3 et de PM2.5 dans l'air. Un score élevé indique une bonne qualité de l'air."
+    },
+    {
+        "name" : "water_pollution_score",
+        "label" : "Qualité de l'eau",
+        "description" : "Indicateur sur la qualité de l'eau. Ce score est basé sur le taux de bactéries dans l'eau potable, le goût et l'aspect de l'eau, le taux de chlore, d'ammonium et d'aluminium, le pH de l'eau et le taux de bactéries de l'air revivifiables à 22°C en 68 heures dans l'eau potable. Un score élevé indique une bonne qualité de l'eau."
+    }
+]
