@@ -1,0 +1,48 @@
+# Git
+.git
+
+# IDE
+.vscode
+.idea
+
+# Docker
+docker*
+
+# Environments
+.env
+.venv
+env
+venv
+ENV
+env.bak
+venv.bak
+
+*.md
+
+# Byte-compiled / optimized / DLL files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# C extensions
+*.so
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov
+.tox
+.nox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis
+.pytest_cache
+cover
+

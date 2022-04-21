@@ -1,0 +1,12 @@
+[flake8]
+ignore = 
+    D203
+
+exclude = 
+    .git,
+    venv,
+    alembic
+
+max-line-length = 160
+
+max-complexity = 10
