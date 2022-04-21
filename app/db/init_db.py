@@ -36,3 +36,8 @@ async def create_inital_dataset(db: Session) -> None:
         await crud.score.create(db, obj_in=schemas.ScoreCreate(year=2000, city_id=city_1.id, environmental=100))
         await crud.score.create(db, obj_in=schemas.ScoreCreate(year=2001, city_id=city_1.id, environmental=95))
         await crud.score.create(db, obj_in=schemas.ScoreCreate(year=2000, city_id=city_2.id, environmental=90))
+
+    if db.query(models.Category).first() is None:
+        await crud.category.create(db, obj_in=schemas.CategoryCreate(code='PORT', name='Port facilities'))
+        await crud.category.create(db, obj_in=schemas.CategoryCreate(code='HIGH DENSITY', name='High density city'))
+        await crud.category.create(db, obj_in=schemas.CategoryCreate(code='TOURIST', name='Touristic city'))
